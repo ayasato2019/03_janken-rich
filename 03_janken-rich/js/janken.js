@@ -17,6 +17,7 @@ function opacity0() {
 }
 
 function toggleOpacity() {
+	judgment.innerHTML = '...';
 	items.forEach(item => {
 		item.style.opacity = '0';
 	});
@@ -33,46 +34,66 @@ function buttonDisabled() {
 	});
 }
 
-function buttonRestart() {
+function buttonReset() {
 	buttonAll.forEach(buttonAll => {
 		buttonAll.disabled = false;
 	});
 }
 
-function judgmentLose() {
-	judgment.innerHTML = '負け！';
+function randomNumber() {
+	const n = Math.ceil(Math.random() * 12);
+	rouletteItems[n].classList.add('done');
+	setTimeout(() =>{
+		rouletteItems[n].classList.remove('done');}, 2000)
 }
 
-function judgmentDraw() {
-	judgment.innerHTML = 'あいこ！';
-}
+function rouletteStart(disabledTime) {
+	const duration = disabledTime - 3000; // 指定した期間より3秒引いた時間だけ回る
+	const factor = 1.1; // 遅延を増加させる
+	let currentDelay = 10; // 最初の表示時間
+	let previousIndex = -1; // 最初はclassを削除するif文に入らない
+	let index = 0;
 
-function judgmentWin() {
-	const duration = 10000; // 10秒
-	const factor = 1.2; // 遅延を増加させる
-	let currentDelay = 100; // 最初の表示時間
-	let previousIndex = -1; // 最初は前回のインデックスがない状態
-
-	buttonDisabled();
-	judgment.innerHTML = '勝ち！';
-
-	rouletteItems.forEach((item, index) => {
-		setTimeout(() => {
-			if (previousIndex >= 0) {
-				rouletteItems[previousIndex].classList.remove('active');
-			}
-			item.classList.add('active');
-			previousIndex = index;
-		}, currentDelay);
-		currentDelay *= factor;
-	});
-
-	setTimeout(() => {
+	function loop() {
 		if (previousIndex >= 0) {
 			rouletteItems[previousIndex].classList.remove('active');
 		}
-	}, duration);
+		rouletteItems[index].classList.add('active');
+		previousIndex = index;
+		index = (index + 1) % rouletteItems.length;
+
+		if (currentDelay < duration) {
+			setTimeout(loop, currentDelay);
+			currentDelay *= factor; // 遅延時間を増加
+		} else {
+				// ルーレットを終了
+				setTimeout(() => {
+					rouletteItems[previousIndex].classList.remove('active');
+					randomNumber();
+				}, currentDelay);
+			}
+		}
+	
+		loop();
+	}
+
+function judgmentLose() {
+	judgment.innerHTML = 'ポン！ズコー！';
 }
+
+function judgmentDraw() {
+	judgment.innerHTML = 'あいこでしょ！';
+}
+
+function judgmentWin() {
+	disabledTime = 3500;
+
+	buttonDisabled();
+	rouletteStart(disabledTime)
+	judgment.innerHTML = 'ポン！やっぴー！';
+	setTimeout(() => {
+		buttonReset()}, disabledTime);
+	}
 
 
 function playGame(e) {
@@ -115,7 +136,7 @@ function playGame(e) {
 			} else if(user == 'choki') {
 				judgmentWin();
 			} else {
-				judgmentDraw();
+				judgmentDrae();
 			}
 		} else {
 			//PCがビッグボスした時

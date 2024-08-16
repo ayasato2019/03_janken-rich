@@ -137,10 +137,6 @@
 	clip-path: polygon(100% 0, 50% 100%, 0 0);
 }
 
-.roulette-item.active {
-	mix-blend-mode: screen;
-}
-
 .roulette-item:nth-child(odd) {
 	color: #D51901;
 	background-color: #E8AE15;
@@ -149,6 +145,28 @@
 .roulette-item:nth-child(even) {
 	color: #E8AE15;
 	background-color: #D51901;
+}
+
+.roulette-item.active ,
+.roulette-item.done {
+	background-color: #1DAF22;
+	color: #4B1DAF;
+}
+
+.roulette-item.done {
+	animation: tenmetu .5s 4;
+}
+
+@keyframes tenmetu {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 .roulette-item:nth-child(1) {
