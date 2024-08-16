@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Limelight&family=Noto+Sans+JP&family=RocknRoll+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>ジャンケンしよう</title>
+</head>
+
+<body class="body">
+
+    <header class="header">
+        <h1 class="header-title">ジャンケンしよう</h1>
+    </header>
+
+    <main class="main">
+        <p class="ganken-text">下のボタンを押してね</p>
+        <p class="ganken-text">ジャンケン...<span id="judgment">...</span></p>
+
+        <div class="game-display">
+            <ul class="ganken" role="list">
+                <li class="ganken-item"><img src="./img/janken_gu.png" width="220" height="220" alt="ジャンケングーのイラスト"></li>
+                <li class="ganken-item"><img src="./img/janken_choki.png" width="220" height="220" alt="ジャンケンチョキのイラスト"></li>
+                <li class="ganken-item"><img src="./img/janken_pa.png" width="220" height="220" alt="ジャンケンパーのイラスト"></li>
+                <li class="ganken-item"><img src="./img/janken_all.png" width="220" height="220" alt="ジャンケン全部出しのイラスト"></li>
+            </ul>
+            <div class="coin-roulette">
+                <ul class="roulette-list">
+                    <li class="roulette-item"><span>50</span></li>
+                    <li class="roulette-item"><span>1</span></li>
+                    <li class="roulette-item"><span>2</span></li>
+                    <li class="roulette-item"><span>7</span></li>
+                    <li class="roulette-item"><span>4</span></li>
+                    <li class="roulette-item"><span>2</span></li>
+                    <li class="roulette-item"><span>16</span></li>
+                    <li class="roulette-item"><span>1</span></li>
+                    <li class="roulette-item"><span>2</span></li>
+                    <li class="roulette-item"><span>7</span></li>
+                    <li class="roulette-item"><span>4</span></li>
+                    <li class="roulette-item"><span>2</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <ul class="button-flex" role="list">
+            <li class="button-item">
+                <div class="button-wrap">
+                    <img src="./img/janken_gu.png" width="220" height="220" alt="ジャンケングーのイラスト">
+                    <button id="gu" class="button_start" aria-label="グー" ></button>
+                </div>
+            </li>
+            <li class="button-item">
+                <div class="button-wrap">
+                    <img src="./img/janken_choki.png" width="220" height="220" alt="ジャンケンチョキのイラスト">
+                    <button id="choki" class="button_start" aria-label="チョキ" ></button>
+                </div>
+            </li>
+            <li class="button-item">
+                <div class="button-wrap">
+                    <img src="./img/janken_pa.png" width="220" height="220" alt="ジャンケンパーのイラスト">
+                    <button id="par" class="button_start" aria-label="パー" ></button>
+                </div>
+            </li>
+        </ul>
+        </main>
+
+    <footer class="footer">© 2024 ayasato. This project is licensed under the MIT License. See LICENSE file for details.
+    </footer>
+
+    <script type="text/javascript" src="./js/janken.js"></script>
+</body>
+
+</html>
